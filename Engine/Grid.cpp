@@ -2,11 +2,13 @@
 
 Grid::Grid(Vec2 in_loc)
 {
+	//init for location of the grid
 	loc = in_loc;
 }
 
 void Grid::DrawBlock(Graphics& in_gfx,const Vec2& in_loc) const
 {
+	//Draws a single block
 	for (int x = in_loc.x * dimension; x < in_loc.x * dimension + dimension; x++)
 	{
 		for (int y = in_loc.y * dimension; y < in_loc.y * dimension + dimension; y++)
@@ -18,6 +20,7 @@ void Grid::DrawBlock(Graphics& in_gfx,const Vec2& in_loc) const
 
 void Grid::Draw(Graphics& in_gfx) const
 {
+	//Draws the grid played in with DrawBlock function
 	for (int x = loc.x; x < loc.x + width; x++)
 	{
 		DrawBlock(in_gfx, { x, loc.y });

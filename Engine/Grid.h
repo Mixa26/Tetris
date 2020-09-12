@@ -13,7 +13,7 @@ public:
 public:
 	Color gridColor = Colors::Gray;
 	Vec2 loc;
-	static constexpr int dimension = 20;
-	static constexpr int width = 12;
-	static constexpr int height = 22;
+	static constexpr int dimension = 20; // of the blocks
+	static constexpr int width = 12; // of the grid
+	static constexpr int height = 22; // of the grid
 };

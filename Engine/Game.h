@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Grid.h"
 #include "Vec2.h"
+#include "Tiles.h"
 
 class Game
 {
@@ -45,5 +46,6 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Grid grid;
+	Tiles tile;
 	/********************************/
 };
