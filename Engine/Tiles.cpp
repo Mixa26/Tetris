@@ -18,7 +18,7 @@ void Tiles::DrawBlock(Graphics& in_gfx, const Vec2& in_loc, Color in_color) cons
 	}
 }
 
-void Tiles::Draw(Graphics & in_gfx, const Shape& in_shape, Color in_color) const
+void Tiles::Draw(Graphics & in_gfx, const Shape& in_shape) const
 {
 	switch (in_shape)
 	{
@@ -35,44 +35,49 @@ void Tiles::Draw(Graphics & in_gfx, const Shape& in_shape, Color in_color) const
 		{
 			for (int y = loc.y; y < loc.y + 2; y++)
 			{
-				DrawBlock(in_gfx, { x, y }, in_color);
+				DrawBlock(in_gfx, { x, y }, yellow);
 			}
 		}
 		break;
 	case Shape::I:
 		for (int y = loc.y; y < loc.y + 4; y++)
 		{
-			DrawBlock(in_gfx, { loc.x, y }, in_color);
+			DrawBlock(in_gfx, { loc.x, y }, cyan);
 		}
 		break;
 	case Shape::S:
-		DrawBlock(in_gfx, { loc.x + 1, loc.y }, in_color);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y }, in_color);
-		DrawBlock(in_gfx, { loc.x, loc.y + 1}, in_color);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1}, in_color);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y }, green);
+		DrawBlock(in_gfx, { loc.x + 2, loc.y }, green);
+		DrawBlock(in_gfx, { loc.x, loc.y + 1}, green);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1}, green);
 		break;
 	case Shape::Z:
-		DrawBlock(in_gfx, { loc.x, loc.y }, in_color);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y }, in_color);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, in_color);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, in_color);
+		DrawBlock(in_gfx, { loc.x, loc.y }, red);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y }, red);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, red);
+		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, red);
 		break;
 	case Shape::L:
-		DrawBlock(in_gfx, { loc.x, loc.y}, in_color);
-		DrawBlock(in_gfx, { loc.x, loc.y + 1 }, in_color);
-		DrawBlock(in_gfx, { loc.x, loc.y + 2}, in_color);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, in_color);
+		DrawBlock(in_gfx, { loc.x, loc.y}, white);
+		DrawBlock(in_gfx, { loc.x, loc.y + 1 }, white);
+		DrawBlock(in_gfx, { loc.x, loc.y + 2}, white);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, white);
 		break;
 	case Shape::J:
-		DrawBlock(in_gfx, { loc.x + 1, loc.y }, in_color);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, in_color);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, in_color);
-		DrawBlock(in_gfx, { loc.x, loc.y + 2 }, in_color);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y }, blue);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, blue);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, blue);
+		DrawBlock(in_gfx, { loc.x, loc.y + 2 }, blue);
 		break;
 	case Shape::T:
-		DrawBlock(in_gfx, { loc.x, loc.y }, in_color);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y }, in_color);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1}, in_color);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y }, in_color);
+		DrawBlock(in_gfx, { loc.x, loc.y }, magenta);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y }, magenta);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1}, magenta);
+		DrawBlock(in_gfx, { loc.x + 2, loc.y }, magenta);
 	}
+}
+
+void Tiles::MoveDown(float dt)
+{
+	loc.y++ * dt;
 }

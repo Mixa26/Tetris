@@ -26,6 +26,7 @@
 #include "Grid.h"
 #include "Vec2.h"
 #include "Tiles.h"
+#include "FrameTimer.h"
 
 class Game
 {
@@ -39,6 +40,9 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	int shape;
+	float movePeriod = 1.0f;
+	float moveCounter = 0.0f;
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -46,6 +50,7 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Grid grid;
-	Tiles tile;
+	Tiles tile[Tiles::max];
+	FrameTimer frametimer;
 	/********************************/
 };
