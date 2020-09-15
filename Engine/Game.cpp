@@ -27,12 +27,10 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	grid({gfx.ScreenWidth / grid.dimension / 2 - grid.width / 2, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2})
+	//tile({ gfx.ScreenWidth / grid.dimension / 2, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2 + 1})
 {
 	srand(time(NULL));
-
-	grid.initializeBlockOccupied();
-
-	for (int spawn = 0; spawn < Tiles::max; spawn++) // tile position initializing
+	for (int spawn = 0; spawn < Tiles::max; spawn++)
 	{
 		tile[spawn] = Tiles({ gfx.ScreenWidth / grid.dimension / 2, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2 + 1 });
 		shape = rand() % 7;
@@ -51,10 +49,10 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	const float dt = frametimer.Mark(); //time measurement
+	const float dt = frametimer.Mark();
 
 	moveCounter += dt;
-	if (moveCounter >= movePeriod) // moves dependent on the movePeriod defined in Game.h
+	if (moveCounter >= movePeriod)
 	{
 		moveCounter -= movePeriod;
 		tile[0].MoveDown(dt);
