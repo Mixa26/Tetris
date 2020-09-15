@@ -4,6 +4,22 @@ Grid::Grid(Vec2 in_loc)
 {
 	//init for location of the grid
 	loc = in_loc;
+
+	for (int x = width - 1; x >= 0; x--)
+	{
+		for (int y = height - 1; y >= 0; y--)
+		{
+			occupied[y][x] = true;
+		}
+	}
+
+	for (int x = width - 2; x > 0; x--)
+	{
+		for (int y = height - 2; y > 0; y--)
+		{
+			occupied[y][x] = false;
+		}
+	}
 }
 
 void Grid::DrawBlock(Graphics& in_gfx,const Vec2& in_loc) const
