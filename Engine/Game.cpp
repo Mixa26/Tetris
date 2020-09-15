@@ -27,17 +27,15 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	grid({gfx.ScreenWidth / grid.dimension / 2 - grid.width / 2, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2})
-	//tile({ gfx.ScreenWidth / grid.dimension / 2, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2 + 1})
 {
 	srand(time(NULL));
 	for (int spawn = 0; spawn < Tiles::max; spawn++)
 	{
-		tile[Tiles::spawned].shape = rand() % 7;
-		tile[spawn] = Tiles({ gfx.ScreenWidth / grid.dimension / 2 - 1, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2 }, (Tiles::Shape)tile[Tiles::spawned].shape);
+		tile[spawn] = Tiles({ gfx.ScreenWidth / grid.dimension / 2 - 1, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2 }, (Tiles::Shape)(rand() % 7));
 	}
 }
 
-int Tiles::spawned = 0;
+
 
 void Game::Go()
 {
@@ -51,20 +49,25 @@ void Game::UpdateModel()
 {
 	const float dt = frametimer.Mark();
 
-	tile[Tiles::spawned].moveCounter += dt;
-	if (tile[Tiles::spawned].moveCounter >= tile[Tiles::spawned].movePeriod)
+	tile[TilesSpawned].moveCounter += dt;
+	if (tile[TilesSpawned].moveCounter >= tile[TilesSpawned].movePeriod)
 	{
-		tile[Tiles::spawned].moveCounter -= tile[Tiles::spawned].movePeriod;
-		tile[Tiles::spawned].MoveDown();
+		tile[TilesSpawned].moveCounter -= tile[TilesSpawned].movePeriod;
+		tile[TilesSpawned].MoveDown();
 	}	
+
+	if (tile[TilesSpawned].Landed(grid, gfx))
+	{
+		TilesSpawned++;
+	}
 }
 
 void Game::ComposeFrame()
 {
 	grid.Draw(gfx);
-	for (int draw = 0; draw <= Tiles::spawned; draw++)
+	for (int draw = 0; draw <= TilesSpawned; draw++)
 	{
-		tile[draw].Draw(gfx, (Tiles::Shape)tile[Tiles::spawned].shape);
+		tile[draw].Draw(gfx, tile[draw].shape);
 	}
 }
 

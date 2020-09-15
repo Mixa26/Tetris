@@ -40,6 +40,7 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	int TilesSpawned = 0;
 	/********************************/
 private:
 	MainWindow& wnd;

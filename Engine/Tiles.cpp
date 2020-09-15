@@ -4,6 +4,7 @@ Tiles::Tiles(const Vec2 & in_loc,const Shape& in_shape)
 {
 	//init for tile location
 	loc = in_loc;
+	shape = in_shape;
 
 	for (int x = 0; x < 4; x++)
 	{
@@ -131,4 +132,19 @@ void Tiles::Draw(Graphics & in_gfx, const Shape& in_shape) const
 void Tiles::MoveDown()
 {
 	loc.y++;
+}
+
+bool Tiles::Landed(const Grid & in_grid, const Graphics& in_gfx)
+{
+	for (int y = 3; y >= 0; y--)
+	{
+		for (int x = 0; x < 4; x++)
+		{
+			if (occupied[y][x] && in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x])
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 }

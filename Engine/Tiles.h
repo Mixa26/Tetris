@@ -24,13 +24,13 @@ public:
 	void DrawBlock(Graphics& in_gfx, const Vec2& in_loc, Color in_color) const;
 	void Draw(Graphics& in_gfx, const Shape& in_shape) const;
 	void MoveDown();
+	bool Landed(const Grid& in_grid, const Graphics& in_gfx);
 public:
-	static int spawned;
 	static constexpr int max = 5000;
-	int shape;
-	float movePeriod = 1.0f;
+	float movePeriod = 0.2f;
 	float moveCounter = 0.0f;
 	bool occupied[4][4];
+	Shape shape;
 private:
 	Vec2 loc;
 	Color green = Colors::Green;
