@@ -40,9 +40,6 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-	int shape;
-	float movePeriod = 1.0f;
-	float moveCounter = 0.0f;
 	/********************************/
 private:
 	MainWindow& wnd;
