@@ -25,6 +25,7 @@ public:
 	void Draw(Graphics& in_gfx, const Shape& in_shape) const;
 	void MoveDown();
 	bool Landed(const Grid& in_grid, const Graphics& in_gfx);
+	void appendOcuppiedGrid(Grid& in_grid, const Graphics& in_gfx) const;
 public:
 	static constexpr int max = 5000;
 	float movePeriod = 0.2f;

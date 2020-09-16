@@ -58,6 +58,7 @@ void Game::UpdateModel()
 
 	if (tile[TilesSpawned].Landed(grid, gfx))
 	{
+		tile[TilesSpawned].appendOcuppiedGrid(grid, gfx);
 		TilesSpawned++;
 	}
 }

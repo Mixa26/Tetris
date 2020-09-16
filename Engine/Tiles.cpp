@@ -29,16 +29,16 @@ Tiles::Tiles(const Vec2 & in_loc,const Shape& in_shape)
 		occupied[1][3] = true;
 		break;
 	case Shape::S:
-		occupied[1][0] = true;
-		occupied[1][1] = true;
-		occupied[2][1] = true;
-		occupied[2][2] = true;
-		break;
-	case Shape::Z:
 		occupied[2][0] = true;
 		occupied[2][1] = true;
 		occupied[1][1] = true;
 		occupied[1][2] = true;
+		break;
+	case Shape::Z:
+		occupied[1][0] = true;
+		occupied[1][1] = true;
+		occupied[2][1] = true;
+		occupied[2][2] = true;
 		break;
 	case Shape::L:
 		occupied[1][0] = true;
@@ -147,4 +147,18 @@ bool Tiles::Landed(const Grid & in_grid, const Graphics& in_gfx)
 		}
 	}
 	return false;
+}
+
+void Tiles::appendOcuppiedGrid(Grid & in_grid,const Graphics& in_gfx) const
+{
+	for (int y = 0; y < 4; y++)
+	{
+		for (int x = 0; x < 4; x++)
+		{
+			if (occupied[y][x])
+			{
+				in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y - 1][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x] = occupied[y][x];
+			}
+		}
+	}
 }
