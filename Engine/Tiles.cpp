@@ -86,10 +86,10 @@ void Tiles::Draw(Graphics & in_gfx, const Shape& in_shape) const
 		J,
 		T*/
 	case Shape::O:
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, green);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, green);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, green);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, green);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, yellow);
+		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, yellow);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, yellow);
+		DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, yellow);
 		break;
 	case Shape::I:
 		DrawBlock(in_gfx, { loc.x, loc.y + 1 }, green);
@@ -98,10 +98,10 @@ void Tiles::Draw(Graphics & in_gfx, const Shape& in_shape) const
 		DrawBlock(in_gfx, { loc.x + 3, loc.y + 1 }, green);
 		break;
 	case Shape::S:
-		DrawBlock(in_gfx, { loc.x, loc.y + 2 }, green);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, green);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1}, green);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1}, green);
+		DrawBlock(in_gfx, { loc.x, loc.y + 2 }, cyan);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, cyan);
+		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1}, cyan);
+		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1}, cyan);
 		break;
 	case Shape::Z:
 		DrawBlock(in_gfx, { loc.x , loc.y + 1 }, red);
@@ -134,6 +134,16 @@ void Tiles::MoveDown()
 	loc.y++;
 }
 
+void Tiles::MoveLeft()
+{
+	loc.x--;
+}
+
+void Tiles::MoveRight()
+{
+	loc.x++;
+}
+
 bool Tiles::Landed(const Grid & in_grid, const Graphics& in_gfx)
 {
 	for (int y = 3; y >= 0; y--)
@@ -141,6 +151,36 @@ bool Tiles::Landed(const Grid & in_grid, const Graphics& in_gfx)
 		for (int x = 0; x < 4; x++)
 		{
 			if (occupied[y][x] && in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x])
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool Tiles::LCollision(const Grid& in_grid, const Graphics& in_gfx)
+{
+	for (int x = 0; x < 4; x++)
+	{
+		for (int y = 0; y < 4; y++)
+		{
+			if (occupied[y][x] && in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x - 1])
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool Tiles::RCollision(const Grid & in_grid, const Graphics & in_gfx)
+{
+	for (int x = 0; x < 4; x++)
+	{
+		for (int y = 0; y < 4; y++)
+		{
+			if (occupied[y][x] && in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x + 1])
 			{
 				return true;
 			}

@@ -42,7 +42,7 @@ void Grid::Draw(Graphics& in_gfx) const
 		DrawBlock(in_gfx, { x, loc.y });
 	}
 
-	for (int x = loc.x; x < loc.x + width + 1; x++)
+	for (int x = loc.x; x < loc.x + width; x++)
 	{
 		DrawBlock(in_gfx, { x, loc.y + height });
 	}
@@ -54,6 +54,6 @@ void Grid::Draw(Graphics& in_gfx) const
 
 	for (int y = loc.y; y < loc.y + height; y++)
 	{
-		DrawBlock(in_gfx, { loc.x + width, y });
+		DrawBlock(in_gfx, { loc.x + width - 1, y });
 	}
 }

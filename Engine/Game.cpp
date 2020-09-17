@@ -49,6 +49,24 @@ void Game::UpdateModel()
 {
 	const float dt = frametimer.Mark();
 
+	//tile[TilesSpawned].RCollision(grid, gfx);
+
+	if (wnd.kbd.KeyIsPressed(VK_LEFT) && !tile[TilesSpawned].LCollision(grid, gfx) && !hold)
+	{
+		tile[TilesSpawned].MoveLeft();
+		hold = true;
+	}
+
+	else if (wnd.kbd.KeyIsPressed(VK_RIGHT) && !tile[TilesSpawned].RCollision(grid, gfx) && !hold)
+	{
+		tile[TilesSpawned].MoveRight();
+		hold = true;
+	}
+	else
+	{
+		hold = false;
+	}
+
 	tile[TilesSpawned].moveCounter += dt;
 	if (tile[TilesSpawned].moveCounter >= tile[TilesSpawned].movePeriod)
 	{

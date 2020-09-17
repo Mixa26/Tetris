@@ -41,6 +41,7 @@ private:
 	/********************************/
 	/*  User Functions              */
 	int TilesSpawned = 0;
+	bool hold = false;
 	/********************************/
 private:
 	MainWindow& wnd;

@@ -24,11 +24,15 @@ public:
 	void DrawBlock(Graphics& in_gfx, const Vec2& in_loc, Color in_color) const;
 	void Draw(Graphics& in_gfx, const Shape& in_shape) const;
 	void MoveDown();
+	void MoveLeft();
+	void MoveRight();
 	bool Landed(const Grid& in_grid, const Graphics& in_gfx);
+	bool LCollision(const Grid& in_grid, const Graphics& in_gfx);
+	bool RCollision(const Grid& in_grid, const Graphics& in_gfx);
 	void appendOcuppiedGrid(Grid& in_grid, const Graphics& in_gfx) const;
 public:
 	static constexpr int max = 5000;
-	float movePeriod = 0.2f;
+	float movePeriod = 1.5f;
 	float moveCounter = 0.0f;
 	bool occupied[4][4];
 	Shape shape;
