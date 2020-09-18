@@ -16,5 +16,5 @@ public:
 	static constexpr int dimension = 20; // of the blocks
 	static constexpr int width = 12; // of the grid
 	static constexpr int height = 22; // of the grid
-	bool occupied[height][width];
+	bool occupied[height][width];	//for collision testing
 };

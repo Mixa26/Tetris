@@ -50,7 +50,7 @@ void Game::UpdateModel()
 	if (wnd.kbd.KeyIsPressed(VK_LEFT) && !tile[TilesSpawned].LCollision(grid, gfx))
 	{
 		helpful_int = 1;
-		if (code_i != helpful_int)
+		if (code_i != helpful_int) // regulates one press at a time
 		{
 			code_i = helpful_int;
 			tile[TilesSpawned].MoveLeft();
@@ -60,7 +60,7 @@ void Game::UpdateModel()
 	else if (wnd.kbd.KeyIsPressed(VK_RIGHT) && !tile[TilesSpawned].RCollision(grid, gfx))
 	{
 		helpful_int = 2;
-		if (code_i != helpful_int)
+		if (code_i != helpful_int) // regulates one press at a time
 		{
 			code_i = helpful_int;
 			tile[TilesSpawned].MoveRight();
@@ -69,12 +69,37 @@ void Game::UpdateModel()
 	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
 		helpful_int = 3;
-		if (code_i != helpful_int)
+		if (code_i != helpful_int) // regulates one press at a time
 		{
 			code_i = helpful_int;
 			tile[TilesSpawned].moveCounter = 0.0f;
 		}
 		tile[TilesSpawned].movePeriod = tile[TilesSpawned].speedF;
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		helpful_int = 4;
+		if (code_i != helpful_int) // regulates one press at a time
+		{
+			code_i = helpful_int;
+
+			for (int x = 0; x < 4; x++) // initializing collision to false by default
+			{
+				for (int y = 0; y < 4; y++)
+				{
+					tile[TilesSpawned].occupied[y][x] = false;
+				}
+			}
+
+			tile[TilesSpawned].rotation++;
+
+			if (tile[TilesSpawned].rotation > 4)
+			{
+				tile[TilesSpawned].rotation = 1;
+			}
+
+		}
+
 	}
 	else
 	{
@@ -83,7 +108,7 @@ void Game::UpdateModel()
 	}
 
 
-	tile[TilesSpawned].moveCounter += dt;
+	tile[TilesSpawned].moveCounter += dt;						// speed of movement dependent by time
 	if (tile[TilesSpawned].moveCounter >= tile[TilesSpawned].movePeriod)
 	{
 		tile[TilesSpawned].moveCounter -= tile[TilesSpawned].movePeriod;
@@ -100,9 +125,9 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	grid.Draw(gfx);
-	for (int draw = 0; draw <= TilesSpawned; draw++)
+	for (int draw = 0; draw <= TilesSpawned; draw++)	//drawing all the tiles
 	{
-		tile[draw].Draw(gfx, tile[draw].shape);
+		tile[draw].Rotation(grid, gfx);
 	}
 }
 

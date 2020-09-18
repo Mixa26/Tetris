@@ -73,62 +73,6 @@ void Tiles::DrawBlock(Graphics& in_gfx, const Vec2& in_loc, Color in_color) cons
 	}
 }
 
-void Tiles::Draw(Graphics & in_gfx, const Shape& in_shape) const
-{
-	switch (in_shape)
-	{
-		//Draws Tiles with the DrawBlock function
-		/*O,
-		I,
-		S,
-		Z,
-		L,
-		J,
-		T*/
-	case Shape::O:
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, yellow);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, yellow);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, yellow);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, yellow);
-		break;
-	case Shape::I:
-		DrawBlock(in_gfx, { loc.x, loc.y + 1 }, green);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1}, green);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, green);
-		DrawBlock(in_gfx, { loc.x + 3, loc.y + 1 }, green);
-		break;
-	case Shape::S:
-		DrawBlock(in_gfx, { loc.x, loc.y + 2 }, cyan);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, cyan);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1}, cyan);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1}, cyan);
-		break;
-	case Shape::Z:
-		DrawBlock(in_gfx, { loc.x , loc.y + 1 }, red);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, red);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, red);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, red);
-		break;
-	case Shape::L:
-		DrawBlock(in_gfx, { loc.x, loc.y + 1}, white);
-		DrawBlock(in_gfx, { loc.x, loc.y + 2 }, white);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1}, white);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, white);
-		break;
-	case Shape::J:
-		DrawBlock(in_gfx, { loc.x, loc.y + 1 }, blue);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, blue);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, blue);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, blue);
-		break;
-	case Shape::T:
-		DrawBlock(in_gfx, { loc.x, loc.y + 1 }, magenta);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, magenta);
-		DrawBlock(in_gfx, { loc.x + 1, loc.y + 2}, magenta);
-		DrawBlock(in_gfx, { loc.x + 2, loc.y + 1}, magenta);
-	}
-}
-
 void Tiles::MoveDown()
 {
 	loc.y++;
@@ -200,5 +144,355 @@ void Tiles::appendOcuppiedGrid(Grid & in_grid,const Graphics& in_gfx) const
 				in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y - 1][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x] = occupied[y][x];
 			}
 		}
+	}
+}
+
+void Tiles::Rotation(const Grid & in_grid,Graphics & in_gfx)
+{
+	switch (shape)
+	{
+	case Shape::O:
+		switch (rotation)
+		{
+		case 1:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, yellow);
+
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 2:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, yellow);
+
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 3:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, yellow);
+
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 4:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, yellow);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, yellow);
+
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		}
+		break;
+	case Shape::I:
+		switch (rotation)
+		{
+		case 1:
+			DrawBlock(in_gfx, { loc.x, loc.y + 1 }, green);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, green);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, green);
+			DrawBlock(in_gfx, { loc.x + 3, loc.y + 1 }, green);
+
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[1][3] = true;
+			break;
+		case 2:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y }, green);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, green);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, green);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 3 }, green);
+
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true; 
+			occupied[3][1] = true;
+			break;
+		case 3:
+			DrawBlock(in_gfx, { loc.x, loc.y + 1 }, green);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, green);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, green);
+			DrawBlock(in_gfx, { loc.x + 3, loc.y + 1 }, green);
+
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[1][3] = true;
+			break;
+		case 4:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y }, green);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, green);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, green);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 3 }, green);
+
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[3][1] = true;
+			break;
+		}
+		break;
+	case Shape::S:
+		switch (rotation)
+		{
+		case 1:
+			DrawBlock(in_gfx, { loc.x, loc.y + 2 }, cyan);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, cyan);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, cyan);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, cyan);
+
+			occupied[2][0] = true;
+			occupied[2][1] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			break;
+		case 2:
+			DrawBlock(in_gfx, { loc.x, loc.y }, cyan);
+			DrawBlock(in_gfx, { loc.x, loc.y + 1 }, cyan);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, cyan);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, cyan);
+
+			occupied[0][0] = true;
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			break;
+		case 3:
+			DrawBlock(in_gfx, { loc.x, loc.y + 2 }, cyan);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, cyan);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, cyan);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, cyan);
+
+			occupied[2][0] = true;
+			occupied[2][1] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			break;
+		case 4:
+			DrawBlock(in_gfx, { loc.x, loc.y }, cyan);
+			DrawBlock(in_gfx, { loc.x, loc.y + 1 }, cyan);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, cyan);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, cyan);
+
+			occupied[0][0] = true;
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			break;
+		}
+		break;
+	case Shape::Z:
+		switch (rotation)
+		{
+		case 1:
+			DrawBlock(in_gfx, { loc.x , loc.y + 1 }, red);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, red);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, red);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, red);
+
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 2:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2}, red);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, red);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1}, red);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y }, red);
+
+			occupied[2][1] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[0][2] = true;
+			break;
+		case 3:
+			DrawBlock(in_gfx, { loc.x , loc.y + 1 }, red);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, red);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, red);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, red);
+
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 4:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, red);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, red);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, red);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y }, red);
+
+			occupied[2][1] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[0][2] = true;
+			break;
+		}
+		break;
+	case Shape::L:
+		switch (rotation)
+		{
+		case 1:
+			DrawBlock(in_gfx, { loc.x, loc.y + 1 }, white);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, white);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, white);
+			DrawBlock(in_gfx, { loc.x, loc.y + 2 }, white);
+
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][0] = true;
+			break;
+		case 2:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y }, white);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, white);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, white);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, white);
+
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 3:
+			DrawBlock(in_gfx, { loc.x, loc.y + 1 }, white);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, white);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, white);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y }, white);
+
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[0][2] = true;
+			break;
+		case 4:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y }, white);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, white);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, white);
+			DrawBlock(in_gfx, { loc.x, loc.y }, white);
+
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[0][0] = true;
+			break;
+		}
+		break;
+	case Shape::J:
+		switch (rotation)
+		{
+		case 1:
+			DrawBlock(in_gfx, { loc.x, loc.y + 1 }, blue);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, blue);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, blue);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 2 }, blue);
+
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][2] = true;
+			break;
+		case 2:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y }, blue);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, blue);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, blue);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y}, blue);
+
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[0][2] = true;
+			break;
+		case 3:
+			DrawBlock(in_gfx, { loc.x, loc.y + 1 }, blue);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, blue);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, blue);
+			DrawBlock(in_gfx, { loc.x , loc.y }, blue);
+
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[0][0] = true;
+			break;
+		case 4:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y }, blue);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, blue);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, blue);
+			DrawBlock(in_gfx, { loc.x, loc.y + 2}, blue);
+
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[2][0] = true;
+			break;
+		}
+		break;
+	case Shape::T:
+		switch (rotation)
+		{
+		case 1:
+			DrawBlock(in_gfx, { loc.x, loc.y + 1 }, magenta);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, magenta);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, magenta);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, magenta);
+
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][1] = true;
+			break;
+		case 2:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y }, magenta);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, magenta);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, magenta);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, magenta);
+
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[1][2] = true;
+			break;
+		case 3:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y }, magenta);
+			DrawBlock(in_gfx, { loc.x , loc.y + 1 }, magenta);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1}, magenta);
+			DrawBlock(in_gfx, { loc.x + 2, loc.y + 1 }, magenta);
+
+			occupied[0][1] = true;
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			break;
+		case 4:
+			DrawBlock(in_gfx, { loc.x + 1, loc.y }, magenta);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 1 }, magenta);
+			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, magenta);
+			DrawBlock(in_gfx, { loc.x , loc.y + 1 }, magenta);
+
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[1][0] = true;
+			break;
+		}
+		break;
 	}
 }
