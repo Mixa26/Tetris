@@ -41,7 +41,9 @@ private:
 	/********************************/
 	/*  User Functions              */
 	int TilesSpawned = 0;
-	bool hold = false;
+	int helpful_int = 0;
+	int helpful_int1 = 0;
+	int code_i = 0;
 	/********************************/
 private:
 	MainWindow& wnd;

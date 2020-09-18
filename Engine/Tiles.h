@@ -32,8 +32,10 @@ public:
 	void appendOcuppiedGrid(Grid& in_grid, const Graphics& in_gfx) const;
 public:
 	static constexpr int max = 5000;
-	float movePeriod = 1.5f;
+	float movePeriod = 1.0f;
 	float moveCounter = 0.0f;
+	float speed = 1.0f;
+	float speedF = 0.1f;
 	bool occupied[4][4];
 	Shape shape;
 private:

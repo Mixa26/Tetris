@@ -35,8 +35,6 @@ Game::Game( MainWindow& wnd )
 	}
 }
 
-
-
 void Game::Go()
 {
 	gfx.BeginFrame();	
@@ -49,23 +47,41 @@ void Game::UpdateModel()
 {
 	const float dt = frametimer.Mark();
 
-	//tile[TilesSpawned].RCollision(grid, gfx);
-
-	if (wnd.kbd.KeyIsPressed(VK_LEFT) && !tile[TilesSpawned].LCollision(grid, gfx) && !hold)
+	if (wnd.kbd.KeyIsPressed(VK_LEFT) && !tile[TilesSpawned].LCollision(grid, gfx))
 	{
-		tile[TilesSpawned].MoveLeft();
-		hold = true;
+		helpful_int = 1;
+		if (code_i != helpful_int)
+		{
+			code_i = helpful_int;
+			tile[TilesSpawned].MoveLeft();
+		}
 	}
 
-	else if (wnd.kbd.KeyIsPressed(VK_RIGHT) && !tile[TilesSpawned].RCollision(grid, gfx) && !hold)
+	else if (wnd.kbd.KeyIsPressed(VK_RIGHT) && !tile[TilesSpawned].RCollision(grid, gfx))
 	{
-		tile[TilesSpawned].MoveRight();
-		hold = true;
+		helpful_int = 2;
+		if (code_i != helpful_int)
+		{
+			code_i = helpful_int;
+			tile[TilesSpawned].MoveRight();
+		}
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		helpful_int = 3;
+		if (code_i != helpful_int)
+		{
+			code_i = helpful_int;
+			tile[TilesSpawned].moveCounter = 0.0f;
+		}
+		tile[TilesSpawned].movePeriod = tile[TilesSpawned].speedF;
 	}
 	else
 	{
-		hold = false;
+		code_i = 0;
+		tile[TilesSpawned].movePeriod = tile[TilesSpawned].speed;
 	}
+
 
 	tile[TilesSpawned].moveCounter += dt;
 	if (tile[TilesSpawned].moveCounter >= tile[TilesSpawned].movePeriod)
