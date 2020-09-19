@@ -11,6 +11,8 @@ public:
 	void DrawBlock(Graphics& in_gfx,const Vec2& in_loc,Color color) const;
 	void Draw(Graphics& in_gfx) const;
 	void DrawTiles(Graphics& in_gfx) const;
+	bool lineFull(int y);
+	void eliminateLine(int y);
 public:
 	Color gridColor = Colors::Gray;
 	Vec2 loc;

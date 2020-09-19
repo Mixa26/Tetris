@@ -71,3 +71,27 @@ void Grid::DrawTiles(Graphics & in_gfx) const
 		}
 	}
 }
+
+bool Grid::lineFull(int y)
+{
+	for (int x = 1; x <= width - 2; x++)
+	{
+		if (!occupied[y][x])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+void Grid::eliminateLine(int y)
+{
+	for (y; y >= 1; y--)
+	{
+		for (int x = 1; x <= width - 2; x++)
+		{
+			occupied[y][x] = occupied[y - 1][x];
+			colors[y][x] = colors[y - 1][x];
+		}
+	}
+}

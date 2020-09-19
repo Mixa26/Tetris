@@ -136,6 +136,14 @@ void Game::UpdateModel()
 		tile[TilesSpawned].MoveDown();
 	}	
 
+	for (int y = grid.height - 2; y >= 1; y--)
+	{ 
+		if (grid.lineFull(y))
+		{
+			grid.eliminateLine(y);
+		}
+	}
+
 }
 
 void Game::ComposeFrame()
