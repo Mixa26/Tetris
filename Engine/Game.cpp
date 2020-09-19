@@ -47,6 +47,8 @@ void Game::UpdateModel()
 {
 	const float dt = frametimer.Mark();
 
+	tile[TilesSpawned].LCollision(grid, gfx);
+
 	if (wnd.kbd.KeyIsPressed(VK_LEFT) && !tile[TilesSpawned].LCollision(grid, gfx))
 	{
 		helpful_int = 1;
@@ -59,7 +61,7 @@ void Game::UpdateModel()
 
 	else if (wnd.kbd.KeyIsPressed(VK_RIGHT) && !tile[TilesSpawned].RCollision(grid, gfx))
 	{
-		helpful_int = 2;
+		helpful_int = 1;
 		if (code_i != helpful_int) // regulates one press at a time
 		{
 			code_i = helpful_int;
@@ -68,7 +70,7 @@ void Game::UpdateModel()
 	}
 	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		helpful_int = 3;
+		helpful_int = 1;
 		if (code_i != helpful_int) // regulates one press at a time
 		{
 			code_i = helpful_int;
@@ -78,7 +80,7 @@ void Game::UpdateModel()
 	}
 	else if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		helpful_int = 4;
+		helpful_int = 1;
 		if (code_i != helpful_int) // regulates one press at a time
 		{
 			code_i = helpful_int;
@@ -107,6 +109,11 @@ void Game::UpdateModel()
 		tile[TilesSpawned].movePeriod = tile[TilesSpawned].speed;
 	}
 
+	if (tile[TilesSpawned].Landed(grid, gfx))   // checks if the tile landed 
+	{
+		tile[TilesSpawned].appendOcuppiedGrid(grid, gfx);
+		TilesSpawned++;
+	}
 
 	tile[TilesSpawned].moveCounter += dt;						// speed of movement dependent by time
 	if (tile[TilesSpawned].moveCounter >= tile[TilesSpawned].movePeriod)
@@ -114,12 +121,6 @@ void Game::UpdateModel()
 		tile[TilesSpawned].moveCounter -= tile[TilesSpawned].movePeriod;
 		tile[TilesSpawned].MoveDown();
 	}	
-
-	if (tile[TilesSpawned].Landed(grid, gfx))
-	{
-		tile[TilesSpawned].appendOcuppiedGrid(grid, gfx);
-		TilesSpawned++;
-	}
 }
 
 void Game::ComposeFrame()

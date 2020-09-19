@@ -109,7 +109,7 @@ bool Tiles::LCollision(const Grid& in_grid, const Graphics& in_gfx)
 	{
 		for (int y = 0; y < 4; y++)
 		{
-			if (occupied[y][x] && in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x - 1])
+			if (occupied[y][x] && in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y - 1][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x - 1])
 			{
 				return true;
 			}
@@ -124,7 +124,7 @@ bool Tiles::RCollision(const Grid & in_grid, const Graphics & in_gfx)
 	{
 		for (int y = 0; y < 4; y++)
 		{
-			if (occupied[y][x] && in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x + 1])
+			if (occupied[y][x] && in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y - 1][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x + 1])
 			{
 				return true;
 			}
