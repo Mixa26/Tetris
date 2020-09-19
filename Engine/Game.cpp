@@ -94,7 +94,7 @@ void Game::UpdateModel()
 				}
 			}
 
-			tileCheck = tile[TilesSpawned];
+			tileCheck = tile[TilesSpawned];		//checking if a tile can rotate
 			tileCheck.rotation++;
 			if (tileCheck.rotation > 4)
 			{
@@ -136,7 +136,7 @@ void Game::UpdateModel()
 		tile[TilesSpawned].MoveDown();
 	}	
 
-	for (int y = grid.height - 2; y >= 1; y--)
+	for (int y = grid.height - 2; y >= 1; y--)		//makes lines dissapear in the game if theyre full
 	{ 
 		if (grid.lineFull(y))
 		{
@@ -151,5 +151,6 @@ void Game::ComposeFrame()
 	tile[TilesSpawned].Rotation(grid, gfx);
 	grid.DrawTiles(gfx);
 	grid.Draw(gfx);
+	tile[TilesSpawned + 1].DrawNext(gfx, 30, 8);
 }
 

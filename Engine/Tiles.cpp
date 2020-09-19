@@ -729,3 +729,52 @@ void Tiles::RotationCheck()
 		break;
 	}
 }
+
+void Tiles::DrawNext(Graphics & in_gfx, int x, int y)
+{
+	switch (shape)
+	{
+	case Shape::O:
+		DrawBlock(in_gfx, { x + 1, y + 1 }, yellow);
+		DrawBlock(in_gfx, { x + 2, y + 1 }, yellow);
+		DrawBlock(in_gfx, { x + 1, y + 2 }, yellow);
+		DrawBlock(in_gfx, { x + 2, y + 2 }, yellow);
+		break;					   
+	case Shape::I:				   
+		DrawBlock(in_gfx, { x,     y + 1 }, green);
+		DrawBlock(in_gfx, { x + 1, y + 1 }, green);
+		DrawBlock(in_gfx, { x + 2, y + 1 }, green);
+		DrawBlock(in_gfx, { x + 3, y + 1 }, green);
+		break;					   
+	case Shape::S:				   
+		DrawBlock(in_gfx, { x,	   y + 2 }, cyan);
+		DrawBlock(in_gfx, { x + 1, y + 2 }, cyan);
+		DrawBlock(in_gfx, { x + 1, y + 1 }, cyan);
+		DrawBlock(in_gfx, { x + 2, y + 1 }, cyan);
+		break;					  
+	case Shape::Z:				   
+		DrawBlock(in_gfx, { x ,    y + 1 }, red);
+		DrawBlock(in_gfx, { x + 1, y + 1 }, red);
+		DrawBlock(in_gfx, { x + 1, y + 2 }, red);
+		DrawBlock(in_gfx, { x + 2, y + 2 }, red);
+		break;					   
+	case Shape::L:				   
+		DrawBlock(in_gfx, { x,     y + 1 }, white);
+		DrawBlock(in_gfx, { x + 1, y + 1 }, white);
+		DrawBlock(in_gfx, { x + 2, y + 1 }, white);
+		DrawBlock(in_gfx, { x,     y + 2 }, white);
+		break;					   
+	case Shape::J:				   
+		DrawBlock(in_gfx, { x,     y + 1 }, blue);
+		DrawBlock(in_gfx, { x + 1, y + 1 }, blue);
+		DrawBlock(in_gfx, { x + 2, y + 1 }, blue);
+		DrawBlock(in_gfx, { x + 2, y + 2 }, blue);
+		break;					   
+	case Shape::T:				   
+		DrawBlock(in_gfx, { x,     y + 1 }, magenta);
+		DrawBlock(in_gfx, { x + 1, y + 1 }, magenta);
+		DrawBlock(in_gfx, { x + 1, y + 2 }, magenta);
+		DrawBlock(in_gfx, { x + 2, y + 1 }, magenta);
+		break;
+	}
+}
