@@ -88,7 +88,7 @@ void Tiles::MoveRight()
 	loc.x++;
 }
 
-bool Tiles::Landed(const Grid & in_grid, const Graphics& in_gfx)
+bool Tiles::Landed(const Grid & in_grid, const Graphics& in_gfx) const
 {
 	for (int y = 3; y >= 0; y--)
 	{
@@ -103,7 +103,7 @@ bool Tiles::Landed(const Grid & in_grid, const Graphics& in_gfx)
 	return false;
 }
 
-bool Tiles::LCollision(const Grid& in_grid, const Graphics& in_gfx)
+bool Tiles::LCollision(const Grid& in_grid, const Graphics& in_gfx) const
 {
 	for (int x = 0; x < 4; x++)
 	{
@@ -118,13 +118,28 @@ bool Tiles::LCollision(const Grid& in_grid, const Graphics& in_gfx)
 	return false;
 }
 
-bool Tiles::RCollision(const Grid & in_grid, const Graphics & in_gfx)
+bool Tiles::RCollision(const Grid & in_grid, const Graphics & in_gfx) const
 {
 	for (int x = 0; x < 4; x++)
 	{
 		for (int y = 0; y < 4; y++)
 		{
 			if (occupied[y][x] && in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y - 1][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x + 1])
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool Tiles::RotateCollision(const Grid & in_grid, const Graphics & in_gfx) const
+{
+	for (int x = 0; x < 4; x++)
+	{
+		for (int y = 0; y < 4; y++)
+		{
+			if (occupied[y][x] && in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y - 1][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x])
 			{
 				return true;
 			}
@@ -487,6 +502,216 @@ void Tiles::Rotation(const Grid & in_grid,Graphics & in_gfx)
 			DrawBlock(in_gfx, { loc.x + 1, loc.y + 2 }, magenta);
 			DrawBlock(in_gfx, { loc.x , loc.y + 1 }, magenta);
 
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[1][0] = true;
+			break;
+		}
+		break;
+	}
+}
+
+void Tiles::RotationCheck()
+{
+	switch (shape)
+	{
+	case Shape::O:
+		switch (rotation)
+		{
+		case 1:
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 2:
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 3:
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 4:
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		}
+		break;
+	case Shape::I:
+		switch (rotation)
+		{
+		case 1:
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[1][3] = true;
+			break;
+		case 2:
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[3][1] = true;
+			break;
+		case 3:
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[1][3] = true;
+			break;
+		case 4:
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[3][1] = true;
+			break;
+		}
+		break;
+	case Shape::S:
+		switch (rotation)
+		{
+		case 1:
+			occupied[2][0] = true;
+			occupied[2][1] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			break;
+		case 2:
+			occupied[0][0] = true;
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			break;
+		case 3:
+			occupied[2][0] = true;
+			occupied[2][1] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			break;
+		case 4:
+			occupied[0][0] = true;
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			break;
+		}
+		break;
+	case Shape::Z:
+		switch (rotation)
+		{
+		case 1:
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 2:
+			occupied[2][1] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[0][2] = true;
+			break;
+		case 3:
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 4:
+			occupied[2][1] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[0][2] = true;
+			break;
+		}
+		break;
+	case Shape::L:
+		switch (rotation)
+		{
+		case 1:
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][0] = true;
+			break;
+		case 2:
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[2][2] = true;
+			break;
+		case 3:
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[0][2] = true;
+			break;
+		case 4:
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[0][0] = true;
+			break;
+		}
+		break;
+	case Shape::J:
+		switch (rotation)
+		{
+		case 1:
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][2] = true;
+			break;
+		case 2:
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[0][2] = true;
+			break;
+		case 3:
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[0][0] = true;
+			break;
+		case 4:
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[2][0] = true;
+			break;
+		}
+		break;
+	case Shape::T:
+		switch (rotation)
+		{
+		case 1:
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			occupied[2][1] = true;
+			break;
+		case 2:
+			occupied[0][1] = true;
+			occupied[1][1] = true;
+			occupied[2][1] = true;
+			occupied[1][2] = true;
+			break;
+		case 3:
+			occupied[0][1] = true;
+			occupied[1][0] = true;
+			occupied[1][1] = true;
+			occupied[1][2] = true;
+			break;
+		case 4:
 			occupied[0][1] = true;
 			occupied[1][1] = true;
 			occupied[2][1] = true;

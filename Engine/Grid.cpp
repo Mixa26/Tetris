@@ -15,7 +15,7 @@ Grid::Grid(Vec2 in_loc)
 
 	for (int x = width - 2; x > 0; x--)
 	{
-		for (int y = height - 2; y > 0; y--)
+		for (int y = height - 2; y >= 0; y--)
 		{
 			occupied[y][x] = false;
 		}

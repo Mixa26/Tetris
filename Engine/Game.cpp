@@ -33,6 +33,7 @@ Game::Game( MainWindow& wnd )
 	{
 		tile[spawn] = Tiles({ gfx.ScreenWidth / grid.dimension / 2 - 1, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2 }, (Tiles::Shape)(rand() % 7));
 	}
+	tileCheck = tile[0];
 }
 
 void Game::Go()
@@ -93,15 +94,28 @@ void Game::UpdateModel()
 				}
 			}
 
-			tile[TilesSpawned].rotation++;
-
-			if (tile[TilesSpawned].rotation > 4)
+			tileCheck = tile[TilesSpawned];
+			tileCheck.rotation++;
+			if (tileCheck.rotation > 4)
 			{
-				tile[TilesSpawned].rotation = 1;
+				tileCheck.rotation = 1;
 			}
+			tileCheck.RotationCheck();
+			if (!tileCheck.RotateCollision(grid, gfx))
+			{
 
+				tile[TilesSpawned].rotation++;
+
+				if (tile[TilesSpawned].rotation > 4)
+				{
+					tile[TilesSpawned].rotation = 1;
+				}
+			}
+			else
+			{
+				tileCheck.rotation = tile[TilesSpawned].rotation;
+			}
 		}
-
 	}
 	else
 	{
@@ -121,14 +135,15 @@ void Game::UpdateModel()
 		tile[TilesSpawned].moveCounter -= tile[TilesSpawned].movePeriod;
 		tile[TilesSpawned].MoveDown();
 	}	
+
 }
 
 void Game::ComposeFrame()
 {
-	grid.Draw(gfx);
 	for (int draw = 0; draw <= TilesSpawned; draw++)	//drawing all the tiles
 	{
 		tile[draw].Rotation(grid, gfx);
 	}
+	grid.Draw(gfx);
 }
 

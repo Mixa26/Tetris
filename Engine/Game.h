@@ -52,6 +52,7 @@ private:
 	/*  User Variables              */
 	Grid grid;
 	Tiles tile[Tiles::max];
+	Tiles tileCheck;
 	FrameTimer frametimer;
 	/********************************/
 };

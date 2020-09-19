@@ -25,11 +25,13 @@ public:
 	void MoveDown();
 	void MoveLeft();
 	void MoveRight();
-	bool Landed(const Grid& in_grid, const Graphics& in_gfx);
-	bool LCollision(const Grid& in_grid, const Graphics& in_gfx);
-	bool RCollision(const Grid& in_grid, const Graphics& in_gfx);
+	bool Landed(const Grid& in_grid, const Graphics& in_gfx) const;
+	bool LCollision(const Grid& in_grid, const Graphics& in_gfx) const;
+	bool RCollision(const Grid& in_grid, const Graphics& in_gfx) const;
+	bool RotateCollision(const Grid& in_grid, const Graphics& in_gfx) const;
 	void appendOcuppiedGrid(Grid& in_grid, const Graphics& in_gfx) const;
 	void Rotation(const Grid& in_grid, Graphics& in_gfx);
+	void RotationCheck();
 public:
 	static constexpr int max = 5000;	//maximum tiles that can spawn (above this results in error)
 	float movePeriod = 1.0f;
