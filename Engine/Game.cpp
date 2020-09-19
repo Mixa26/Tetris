@@ -140,10 +140,8 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	for (int draw = 0; draw <= TilesSpawned; draw++)	//drawing all the tiles
-	{
-		tile[draw].Rotation(grid, gfx);
-	}
+	tile[TilesSpawned].Rotation(grid, gfx);
+	grid.DrawTiles(gfx);
 	grid.Draw(gfx);
 }
 

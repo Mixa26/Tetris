@@ -21,42 +21,49 @@ Tiles::Tiles(const Vec2 & in_loc,const Shape& in_shape)
 		occupied[1][2] = true;
 		occupied[2][1] = true;
 		occupied[2][2] = true;
+		color = yellow;
 		break;
 	case Shape::I:
 		occupied[1][0] = true;
 		occupied[1][1] = true;
 		occupied[1][2] = true;
 		occupied[1][3] = true;
+		color = green;
 		break;
 	case Shape::S:
 		occupied[2][0] = true;
 		occupied[2][1] = true;
 		occupied[1][1] = true;
 		occupied[1][2] = true;
+		color = cyan;
 		break;
 	case Shape::Z:
 		occupied[1][0] = true;
 		occupied[1][1] = true;
 		occupied[2][1] = true;
 		occupied[2][2] = true;
+		color = red;
 		break;
 	case Shape::L:
 		occupied[1][0] = true;
 		occupied[1][1] = true;
 		occupied[1][2] = true;
 		occupied[2][0] = true;
+		color = white;
 		break;
 	case Shape::J:
 		occupied[1][0] = true;
 		occupied[1][1] = true;
 		occupied[1][2] = true;
 		occupied[2][2] = true;
+		color = blue;
 		break;
 	case Shape::T:
 		occupied[1][0] = true;
 		occupied[1][1] = true;
 		occupied[1][2] = true;
 		occupied[2][1] = true;
+		color = magenta;
 		break;
 	}
 }
@@ -157,6 +164,7 @@ void Tiles::appendOcuppiedGrid(Grid & in_grid,const Graphics& in_gfx) const
 			if (occupied[y][x])
 			{
 				in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y - 1][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x] = occupied[y][x];
+				in_grid.colors[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y - 1][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x] = color;
 			}
 		}
 	}

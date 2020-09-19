@@ -41,6 +41,7 @@ public:
 	bool occupied[4][4];	//collision detection
 	int rotation = 1;	//rotation count
 	Shape shape;
+	Color color;
 private:
 	Vec2 loc;
 	Color green = Colors::Green;
