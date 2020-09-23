@@ -71,16 +71,6 @@ void Game::UpdateModel()
 				tile[TilesSpawned].MoveRight();
 			}
 		}
-		else if (wnd.kbd.KeyIsPressed(VK_DOWN))
-		{
-			helpful_int = 1;
-			if (code_i != helpful_int) // regulates one press at a time
-			{
-				code_i = helpful_int;
-				tile[TilesSpawned].moveCounter = 0.0f;
-			}
-			tile[TilesSpawned].movePeriod = tile[TilesSpawned].speedF;
-		}
 		else if (wnd.kbd.KeyIsPressed(VK_UP))
 		{
 			helpful_int = 1;
@@ -122,7 +112,23 @@ void Game::UpdateModel()
 		else
 		{
 			code_i = 0;
-			tile[TilesSpawned].movePeriod = tile[TilesSpawned].speed;
+		}
+
+		if (wnd.kbd.KeyIsPressed(VK_DOWN))
+		{
+			helpful_intd = 1;
+			if (code_id != helpful_intd) // regulates one press at a time
+			{
+				code_id = helpful_intd;
+				tile[TilesSpawned].moveCounter = 0.0f;
+			}
+			tile[TilesSpawned].movePeriod = tile[TilesSpawned].speedF;
+		}
+		else
+		{
+			code_id = 0;
+			tile[TilesSpawned].movePeriod = Tiles::speed;
+			
 		}
 	}
 

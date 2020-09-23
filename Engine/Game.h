@@ -42,7 +42,9 @@ private:
 	/*  User Functions              */
 	int TilesSpawned = 0;
 	int helpful_int = 0;
+	int helpful_intd = 0;
 	int code_i = 0;
+	int code_id = 0;
 	bool GameOver = false;
 	/********************************/
 private:
