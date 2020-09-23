@@ -26,6 +26,7 @@ public:
 	void MoveLeft();
 	void MoveRight();
 	bool Landed(const Grid& in_grid, const Graphics& in_gfx) const;
+	bool GameOver(const Grid& in_grid, const Graphics& in_gfx) const;
 	bool LCollision(const Grid& in_grid, const Graphics& in_gfx) const;
 	bool RCollision(const Grid& in_grid, const Graphics& in_gfx) const;
 	bool RotateCollision(const Grid& in_grid, const Graphics& in_gfx) const;

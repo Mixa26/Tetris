@@ -48,99 +48,129 @@ void Game::UpdateModel()
 {
 	const float dt = frametimer.Mark();
 
-	tile[TilesSpawned].LCollision(grid, gfx);
-
-	if (wnd.kbd.KeyIsPressed(VK_LEFT) && !tile[TilesSpawned].LCollision(grid, gfx))
+	if (!GameOver)
 	{
-		helpful_int = 1;
-		if (code_i != helpful_int) // regulates one press at a time
+		if (wnd.kbd.KeyIsPressed(VK_LEFT) && !tile[TilesSpawned].LCollision(grid, gfx))
 		{
-			code_i = helpful_int;
-			tile[TilesSpawned].MoveLeft();
-		}
-	}
-
-	else if (wnd.kbd.KeyIsPressed(VK_RIGHT) && !tile[TilesSpawned].RCollision(grid, gfx))
-	{
-		helpful_int = 1;
-		if (code_i != helpful_int) // regulates one press at a time
-		{
-			code_i = helpful_int;
-			tile[TilesSpawned].MoveRight();
-		}
-	}
-	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
-	{
-		helpful_int = 1;
-		if (code_i != helpful_int) // regulates one press at a time
-		{
-			code_i = helpful_int;
-			tile[TilesSpawned].moveCounter = 0.0f;
-		}
-		tile[TilesSpawned].movePeriod = tile[TilesSpawned].speedF;
-	}
-	else if (wnd.kbd.KeyIsPressed(VK_UP))
-	{
-		helpful_int = 1;
-		if (code_i != helpful_int) // regulates one press at a time
-		{
-			code_i = helpful_int;
-
-			for (int x = 0; x < 4; x++) // initializing collision to false by default
+			helpful_int = 1;
+			if (code_i != helpful_int) // regulates one press at a time
 			{
-				for (int y = 0; y < 4; y++)
+				code_i = helpful_int;
+				tile[TilesSpawned].MoveLeft();
+			}
+		}
+
+		else if (wnd.kbd.KeyIsPressed(VK_RIGHT) && !tile[TilesSpawned].RCollision(grid, gfx))
+		{
+			helpful_int = 1;
+			if (code_i != helpful_int) // regulates one press at a time
+			{
+				code_i = helpful_int;
+				tile[TilesSpawned].MoveRight();
+			}
+		}
+		else if (wnd.kbd.KeyIsPressed(VK_DOWN))
+		{
+			helpful_int = 1;
+			if (code_i != helpful_int) // regulates one press at a time
+			{
+				code_i = helpful_int;
+				tile[TilesSpawned].moveCounter = 0.0f;
+			}
+			tile[TilesSpawned].movePeriod = tile[TilesSpawned].speedF;
+		}
+		else if (wnd.kbd.KeyIsPressed(VK_UP))
+		{
+			helpful_int = 1;
+			if (code_i != helpful_int) // regulates one press at a time
+			{
+				code_i = helpful_int;
+
+				for (int x = 0; x < 4; x++) // initializing collision to false by default
 				{
-					tile[TilesSpawned].occupied[y][x] = false;
+					for (int y = 0; y < 4; y++)
+					{
+						tile[TilesSpawned].occupied[y][x] = false;
+					}
+				}
+
+				tileCheck = tile[TilesSpawned];		//checking if a tile can rotate
+				tileCheck.rotation++;
+				if (tileCheck.rotation > 4)
+				{
+					tileCheck.rotation = 1;
+				}
+				tileCheck.RotationCheck();
+				if (!tileCheck.RotateCollision(grid, gfx))
+				{
+
+					tile[TilesSpawned].rotation++;
+
+					if (tile[TilesSpawned].rotation > 4)
+					{
+						tile[TilesSpawned].rotation = 1;
+					}
+				}
+				else
+				{
+					tileCheck.rotation = tile[TilesSpawned].rotation;
 				}
 			}
-
-			tileCheck = tile[TilesSpawned];		//checking if a tile can rotate
-			tileCheck.rotation++;
-			if (tileCheck.rotation > 4)
-			{
-				tileCheck.rotation = 1;
-			}
-			tileCheck.RotationCheck();
-			if (!tileCheck.RotateCollision(grid, gfx))
-			{
-
-				tile[TilesSpawned].rotation++;
-
-				if (tile[TilesSpawned].rotation > 4)
-				{
-					tile[TilesSpawned].rotation = 1;
-				}
-			}
-			else
-			{
-				tileCheck.rotation = tile[TilesSpawned].rotation;
-			}
 		}
-	}
-	else
-	{
-		code_i = 0;
-		tile[TilesSpawned].movePeriod = tile[TilesSpawned].speed;
+		else
+		{
+			code_i = 0;
+			tile[TilesSpawned].movePeriod = tile[TilesSpawned].speed;
+		}
 	}
 
 	if (tile[TilesSpawned].Landed(grid, gfx))   // checks if the tile landed 
 	{
-		tile[TilesSpawned].appendOcuppiedGrid(grid, gfx);
-		TilesSpawned++;
+		if (tile[TilesSpawned].GameOver(grid, gfx))
+		{
+			GameOver = true;
+		}
+
+		if(!GameOver)
+		{
+			tile[TilesSpawned].appendOcuppiedGrid(grid, gfx);
+			TilesSpawned++;
+		}
 	}
 
-	tile[TilesSpawned].moveCounter += dt;						// speed of movement dependent by time
-	if (tile[TilesSpawned].moveCounter >= tile[TilesSpawned].movePeriod)
+	if (!GameOver)
 	{
-		tile[TilesSpawned].moveCounter -= tile[TilesSpawned].movePeriod;
-		tile[TilesSpawned].MoveDown();
-	}	
+		tile[TilesSpawned].moveCounter += dt;						// speed of movement dependent by time
+		if (tile[TilesSpawned].moveCounter >= tile[TilesSpawned].movePeriod)
+		{
+			tile[TilesSpawned].moveCounter -= tile[TilesSpawned].movePeriod;
+			tile[TilesSpawned].MoveDown();
+		}
+	}
 
 	for (int y = grid.height - 2; y >= 1; y--)		//makes lines dissapear in the game if theyre full
 	{ 
 		if (grid.lineFull(y))
 		{
 			grid.eliminateLine(y);
+		}
+	}
+
+	if (GameOver)
+	{
+		if (wnd.kbd.KeyIsPressed(VK_RETURN))
+		{
+			GameOver = false;
+
+			TilesSpawned = 0;	//resets the number of tiles spawned
+
+			for (int spawn = 0; spawn < Tiles::max; spawn++)		//initializes new tiles
+			{
+				tile[spawn] = Tiles({ gfx.ScreenWidth / grid.dimension / 2 - 1, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2 }, (Tiles::Shape)(rand() % 7));
+			}
+			tileCheck = tile[0];	
+
+			grid = Grid({ gfx.ScreenWidth / grid.dimension / 2 - grid.width / 2, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2 });
 		}
 	}
 
@@ -153,4 +183,3 @@ void Game::ComposeFrame()
 	grid.Draw(gfx);
 	tile[TilesSpawned + 1].DrawNext(gfx, 30, 8);
 }
-

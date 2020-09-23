@@ -42,8 +42,8 @@ private:
 	/*  User Functions              */
 	int TilesSpawned = 0;
 	int helpful_int = 0;
-	int helpful_int1 = 0;
 	int code_i = 0;
+	bool GameOver = false;
 	/********************************/
 private:
 	MainWindow& wnd;

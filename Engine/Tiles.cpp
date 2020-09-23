@@ -110,6 +110,21 @@ bool Tiles::Landed(const Grid & in_grid, const Graphics& in_gfx) const
 	return false;
 }
 
+bool Tiles::GameOver(const Grid & in_grid, const Graphics & in_gfx) const
+{
+	for (int y = 3; y >= 0; y--)
+	{
+		for (int x = 0; x < 4; x++)
+		{
+			if (occupied[y][x] && in_grid.occupied[loc.y - (in_gfx.ScreenHeight / in_grid.dimension / 2 - in_grid.height / 2) + y - 1][loc.x - (in_gfx.ScreenWidth / in_grid.dimension / 2 - in_grid.width / 2) + x])
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 bool Tiles::LCollision(const Grid& in_grid, const Graphics& in_gfx) const
 {
 	for (int x = 0; x < 4; x++)

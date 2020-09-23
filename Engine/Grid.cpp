@@ -18,6 +18,7 @@ Grid::Grid(Vec2 in_loc)
 		for (int y = height - 2; y >= 0; y--)
 		{
 			occupied[y][x] = false;
+			colors[y][x] = NULL;
 		}
 	}
 }
