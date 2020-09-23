@@ -44,6 +44,8 @@ void Game::Go()
 	gfx.EndFrame();
 }
 
+float Tiles::speed = 0.4f;
+
 void Game::UpdateModel()
 {
 	const float dt = frametimer.Mark();
@@ -135,6 +137,11 @@ void Game::UpdateModel()
 		{
 			tile[TilesSpawned].appendOcuppiedGrid(grid, gfx);
 			TilesSpawned++;
+
+			if (TilesSpawned % 25 == 0 && Tiles::speed > 0.1f)
+			{
+				Tiles::speed -= 0.025f;
+			}
 		}
 	}
 
@@ -171,6 +178,8 @@ void Game::UpdateModel()
 			tileCheck = tile[0];	
 
 			grid = Grid({ gfx.ScreenWidth / grid.dimension / 2 - grid.width / 2, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2 });
+
+			Tiles::speed = 0.4f;
 		}
 	}
 

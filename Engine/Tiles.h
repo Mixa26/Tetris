@@ -36,10 +36,10 @@ public:
 	void DrawNext(Graphics& in_gfx, int x, int y);
 public:
 	static constexpr int max = 5000;	//maximum tiles that can spawn (above this results in error)
-	float movePeriod = 1.0f;
+	float movePeriod = speed;
 	float moveCounter = 0.0f;
-	float speed = 0.4f;		//speed
-	float speedF = 0.1f;	//speed faster
+	static float speed;		//speed
+	float speedF = 0.05f;	//speed faster
 	bool occupied[4][4];	//collision detection
 	int rotation = 1;	//rotation count
 	Shape shape;
