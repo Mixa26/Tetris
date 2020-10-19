@@ -27,6 +27,7 @@
 #include "Vec2.h"
 #include "Tiles.h"
 #include "FrameTimer.h"
+#include "Score.h"
 
 class Game
 {
@@ -56,5 +57,6 @@ private:
 	Tiles tile[Tiles::max];
 	Tiles tileCheck;
 	FrameTimer frametimer;
+	Score score;
 	/********************************/
 };

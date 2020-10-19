@@ -166,6 +166,7 @@ void Game::UpdateModel()
 		if (grid.lineFull(y))
 		{
 			grid.eliminateLine(y);
+			score.scorePlus();
 		}
 	}
 
@@ -186,6 +187,8 @@ void Game::UpdateModel()
 			grid = Grid({ gfx.ScreenWidth / grid.dimension / 2 - grid.width / 2, gfx.ScreenHeight / grid.dimension / 2 - grid.height / 2 });
 
 			Tiles::speed = 0.4f;
+
+			score.score = 0;
 		}
 	}
 
@@ -197,4 +200,16 @@ void Game::ComposeFrame()
 	grid.DrawTiles(gfx);
 	grid.Draw(gfx);
 	tile[TilesSpawned + 1].DrawNext(gfx, 30, 8);
+
+	if (score.score == 0)
+	{
+		score.DrawScore(Vec2(420, 10), score.score, gfx);
+	}
+	else
+	{
+		for (int s = score.score, i = s % 10, c = 1; s != 0 && 465 - (c + 1) * 30 > 0; s /= 10, i = s % 10, c++)
+		{
+			score.DrawScore(Vec2(465 - c * 30, 10), i, gfx);
+		}
+	}	
 }
