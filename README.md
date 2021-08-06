@@ -1,7 +1,8 @@
-#Tetris
+Tetris
+~~~~~~
 
-##Controls
-
+Controls
+___________________________________________________
 The controls are the same as in the regular tetris: 
 
 up arrow = rotate the falling tile
@@ -14,7 +15,8 @@ right arrow = moves tile right once
 
 (You cant go left/ right multiple times by holding down the button left arrow/ right arrow)
 
-##Realisation
+Realisation
+___________________________________________________
 
 I used a framework from a youtuber called ChiliTomatoNoodle (https://www.youtube.com/user/ChiliTomatoNoodle) which regulates the programs window,
 and the communication with the OS(graphics, input...). 
@@ -25,7 +27,8 @@ Score is calculated by every row completed (each row 10 points).
 The tiles movement speeds up slowly by time.
 Movement speed is regulated by delta time.
 
-##Screenshots of gameplay
+Screenshots of gameplay
+___________________________________________________
 
 ![Untitled](https://user-images.githubusercontent.com/71144280/128492731-427505f7-4c4c-48c8-a96e-c42f98955994.jpg)
 
