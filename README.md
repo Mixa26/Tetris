@@ -1,8 +1,11 @@
-Tetris
-~~~~~~
+# Tetris
 
-Controls
-___________________________________________________
+https://github.com/Mixa26/Tetris/assets/71144280/307ed588-9b1b-4553-89bc-e7eba5dec54a
+
+
+
+## Controls
+
 The controls are the same as in the regular tetris: 
 
 up arrow = rotate the falling tile
@@ -15,8 +18,7 @@ right arrow = moves tile right once
 
 (You cant go left/ right multiple times by holding down the button left arrow/ right arrow)
 
-Realisation
-___________________________________________________
+## Realisation
 
 I used a framework from a youtuber called ChiliTomatoNoodle (https://www.youtube.com/user/ChiliTomatoNoodle) which regulates the programs window,
 and the communication with the OS(graphics, input...). 
@@ -27,10 +29,7 @@ Score is calculated by every row completed (each row 10 points).
 The tiles movement speeds up slowly by time.
 Movement speed is regulated by delta time.
 
-Screenshots of gameplay
-___________________________________________________
-
-![Untitled](https://user-images.githubusercontent.com/71144280/128492731-427505f7-4c4c-48c8-a96e-c42f98955994.jpg)
+## More info
 
 The tile outside of the screen on the right side is the next tile coming up to the cue.
 
@@ -38,6 +37,4 @@ The number at the top is score, each row completed is 10 points.
 
 The falling of tiles speeds up over time.
 
-![stacked](https://user-images.githubusercontent.com/71144280/128492834-306a088a-9931-49ff-b61f-8076c81ff811.jpg)
-
-If the game is ended like in the image above, press enter to restart.
+When the game is ended press enter to restart.
