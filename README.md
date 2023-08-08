@@ -1,6 +1,6 @@
 # Tetris
 
-![Gameplay](pictures/gameplay.mp4)
+![Gameplay](pictures/gameplay.gif)
 
 
 
