@@ -1,6 +1,6 @@
 # Tetris
 
-https://github.com/Mixa26/Tetris/assets/71144280/307ed588-9b1b-4553-89bc-e7eba5dec54a
+![Gameplay](pictures/gameplay.mp4)
 
 
 
